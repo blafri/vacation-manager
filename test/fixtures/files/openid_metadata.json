@@ -1,0 +1,5 @@
+{
+   "jwks_uri":"https://login.microsoftonline.com/azure-tenant-id/discovery/v2.0/keys",
+   "issuer":"https://login.microsoftonline.com/azure-tenant-id/v2.0",
+   "authorization_endpoint":"https://login.microsoftonline.com/azure-tenant-id/oauth2/v2.0/authorize"
+}

@@ -1,0 +1,8 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+valid:
+  nonce_value: valid_nonce
+
+expired:
+  nonce_value: expired_nonce
+  created_at: <%= 6.minutes.ago %>
