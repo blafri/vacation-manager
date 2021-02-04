@@ -25,3 +25,5 @@ end
 Rails.application.routes.append do
   get '/test_login', to: 'test_logins#new', as: :test_login
 end
+
+Rails.application.reload_routes!
