@@ -1,6 +1,23 @@
 <div class="min-h-screen bg-white flex">
   <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
     <div class="mx-auto w-full max-w-sm lg:w-96">
+      <% if flash[:alert] %>
+        <div class="mb-6">
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <!-- Heroicon name: exclamation -->
+                <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-red-800"><%= flash[:alert] %></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <div>
         <%= image_tag 'tsl_logo_with_text_login_page.jpg', alt: 'TSL Logo' %>
         <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
@@ -18,7 +35,7 @@
         </div>
 
         <div class="mt-10">
-          <%= form_with url: '/auth/microsoft_graph_auth', method: :post do |form| %>
+          <%= form_with url: azure_logins_path, method: :post do |form| %>
             <div>
               <%= form.submit 'Sign in', class: 'w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' %>
             </div>

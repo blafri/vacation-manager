@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hr_admin:
+  azure_id: azure_id_for_hr_admin
+  email: blayne.farinha@thetslgroup.com
+  full_name: Blayne Farinha
+  roles: ['vacationPlanner.hr_admin', 'otherApp.role']
+
+ordinary_user:
+  azure_id: azure_id_for_ordinary_user
+  email: david.torry@thetslgroup.com
+  full_name: David Torry
+  roles: []

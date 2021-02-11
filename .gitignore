@@ -35,3 +35,5 @@ yarn-debug.log*
 # Ignore local SSL certificates
 server.crt
 server.key
+
+/config/credentials/test.key

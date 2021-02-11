@@ -1,33 +1,26 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
+# Test the credential checker
 class CredentialsCheckerTest < ActiveSupport::TestCase
-  def setup
-    # this sets up a custm EncryptedConfiguration object to inject into the initializer fo the test
-    # it simply has two keys 'password' and 'api_key'
-    @credentials =  ActiveSupport::EncryptedConfiguration
-      .new(config_path: Rails.root.join('test', 'test_files', 'test_creds.yml.enc'),
-           key_path: Rails.root.join('test', 'test_files', 'test_creds.key'),
-           env_key: 'NOT_HERE',
-           raise_if_missing_key: true)
-  end
-
   test '#key_present? should return false if key not present in credentials' do
-    checker = CredentialsChecker.new(credentials: @credentials)
+    checker = CredentialsChecker.new
     assert_not checker.key_present?(:missing_value)
   end
 
   test '#key_present? should return true if key present in credentials' do
-    checker = CredentialsChecker.new(credentials: @credentials)
-    assert checker.key_present?(:password)
+    checker = CredentialsChecker.new
+    assert checker.key_present?(:secret_key_base)
   end
 
   test '::require_keys! returns true if keys present' do
-    assert CredentialsChecker.require_keys!(:password, :api_key, credentials: @credentials)
+    assert CredentialsChecker.require_keys!(:secret_key_base, :password)
   end
 
-   test '::require_keys! throws error if keys missing' do
+  test '::require_keys! throws error if keys missing' do
     assert_raises(CredentialsChecker::KeyMissingError) do
-      CredentialsChecker.require_keys!(:password, :missing_value, credentials: @credentials)
+      CredentialsChecker.require_keys!(:secret_key_base, :missing_value)
     end
   end
 end
